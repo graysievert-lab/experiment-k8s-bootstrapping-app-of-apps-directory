@@ -25,7 +25,7 @@ spec:
     path: "."
     directory:
       recurse: true
-      # exclude: '{**/*/{*,!*/argocd_app.yaml},*.*,!root_app.yaml}' # exlude anything unless it is `root_app.yaml` or `argocd_app.yaml`
+      # exclude: '{**/*/{*,!*/argocd_app.yaml},!root_app.yaml}' # exlude anything unless it is `root_app.yaml` or `argocd_app.yaml`
       include: '{*/argocd_app.yaml}'
 
 

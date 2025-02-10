@@ -7,7 +7,8 @@ Cons:
 
 - ArgoCD application manifests in each directory
 - Each ArgoCD application manifest contains links to this repository
-- Too many copypasting when creating new app. Fields are mostly the same as basedir, so templating might help a bit.
+- Too many copypasting when creating new app. Prone to errors. Fields are mostly the same as basedir, so templating might help a bit.
+- Globs for inclusion and exlusion could be non obvious.
 
 Pros:
 
