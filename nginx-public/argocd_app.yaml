@@ -21,7 +21,7 @@ spec:
     ref: values
 
   - repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 4.12.0
+    targetRevision: 18.0.0
     chart: nginx
     helm:
       valueFiles:
