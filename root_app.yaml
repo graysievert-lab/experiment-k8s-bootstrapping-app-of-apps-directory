@@ -10,16 +10,24 @@ metadata:
 
 spec:
   project: default
-  source:
-    repoURL: git@github.com:graysievert-lab/experiment-k8s-bootstrapping-app-of-apps-directory.git
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  sources:
+  # This app itself
+  - repoURL: git@github.com:graysievert-lab/experiment-k8s-bootstrapping-applicationset-generator-git-file.git
+    targetRevision: HEAD 
+    path: "."
+
+  - repoURL: git@github.com:graysievert-lab/experiment-k8s-bootstrapping-app-of-apps-directory.git
     targetRevision: HEAD 
     path: "."
     directory:
       recurse: true
-      exclude: '{**/*/{*,!*/argocd_app.yaml},!root_app.yaml}' # exlude anything unless it is `root_app.yaml` or `argocd_app.yaml`
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
+      # exclude: '{**/*/{*,!*/argocd_app.yaml},*.*,!root_app.yaml}' # exlude anything unless it is `root_app.yaml` or `argocd_app.yaml`
+      include: '{*/argocd_app.yaml}'
+
 
   syncPolicy:
     automated:
