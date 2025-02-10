@@ -16,7 +16,7 @@ spec:
 
   sources:
   # This app itself
-  - repoURL: git@github.com:graysievert-lab/experiment-k8s-bootstrapping-applicationset-generator-git-file.git
+  - repoURL: git@github.com:graysievert-lab/experiment-k8s-bootstrapping-app-of-apps-directory.git
     targetRevision: HEAD 
     path: "."
 
