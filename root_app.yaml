@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 00-test-root
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/compare-options: >- 
+      ServerSideDiff=true,
+      IncludeMutationWebhook=true 
+
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:graysievert-lab/experiment-k8s-bootstrapping-app-of-apps-directory.git
+    targetRevision: HEAD 
+    path: "."
+    directory:
+      recurse: true
+      exclude: '{**/*/{*,!*/argocd_app.yaml},!root_app.yaml}' # exlude anything unless it is `root_app.yaml` or `argocd_app.yaml`
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+      - PrunePropagationPolicy=orphan # Supported policies are background, foreground and orphan.
+      - ApplyOutOfSyncOnly=true # Only sync out-of-sync resources, rather than applying every object in the application
+      - ServerSideApply=true      
+    retry:
+      limit: -1
